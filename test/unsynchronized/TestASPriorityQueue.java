@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import unsynchronized.ASPriorityQueue;
 
 public class TestASPriorityQueue {
