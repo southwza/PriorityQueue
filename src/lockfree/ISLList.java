@@ -6,7 +6,7 @@ import java.util.Iterator;
 // use an immutable data structure and the jdk does not provide it :(
 // For simplicity:
 // - a null value means an empty list
-// - all lists will have an empty sentinal at the end
+// - all lists will have an empty sentinel at the end
 // - therefore any list with a non-null value must have a non-null 'next'
 
 public class ISLList <E> implements Iterable<E> {

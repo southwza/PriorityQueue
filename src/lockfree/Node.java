@@ -3,8 +3,8 @@ package lockfree;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
-    AtomicReference<NodeState<E>> state = new AtomicReference<NodeState<E>>(
-            new NodeState<E>(null, 0, new ISLList<Node<E>>(), null, 0, null));
+    AtomicReference<NodeState<E>> state = new AtomicReference<>(
+            new NodeState<>(null, 0, new ISLList<>(), null, 0, null));
     volatile boolean deleted = false;
     E key;
 
@@ -24,15 +24,11 @@ public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
         return state.get().seq;
     }
 
-    public Label getLabel() {
-        return state.get().label;
-    }
-
     public NodeState<E> maybeClearParent() {
         NodeState<E> oldState = state.get();
         Node<E> p = oldState.parent;
         if (p != null && p.deleted) {
-            NodeState<E> newState = new NodeState<E>(null, oldState.degree, oldState.children, oldState.next, oldState.seq, oldState.label);
+            NodeState<E> newState = new NodeState<>(null, oldState.degree, oldState.children, oldState.next, oldState.seq, oldState.label);
             if (state.get() == oldState && compareAndSet(oldState, newState)) {
                 return newState;
             } else {
@@ -41,14 +37,6 @@ public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
         } else {
             return oldState;
         }
-    }
-
-    public void clear() {
-        state.set(new NodeState<E>(null, 0, new ISLList<Node<E>>(),null, 0, null));
-    }
-
-    public void setParentInitial(Node<E> p) {
-        state.set(new NodeState<E>(p, 0, new ISLList<Node<E>>(),null, 0, null));
     }
 
     @Override

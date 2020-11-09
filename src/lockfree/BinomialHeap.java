@@ -10,89 +10,85 @@ import java.util.concurrent.atomic.AtomicInteger;
 @SuppressWarnings("unchecked")
 public class BinomialHeap <E extends Comparable<E>> {
 
-    Node<E> head = new Node<E>(null); //sentinel head node
-    private AtomicInteger opCount = new AtomicInteger(0);
-    private AtomicInteger count = new AtomicInteger(0);
+    Node<E> head = new Node<>(null); //sentinel head node
+    private final AtomicInteger opCount = new AtomicInteger(0);
+    private final AtomicInteger count = new AtomicInteger(0);
 
     // This number determines how often a thread attempts to tidy the heap
     // structure. A higher number results in more tidying, which results in fewer
     // root nodes and faster traversal of the queue, but also results in more work
     // to tidy up the queue. The author suggests a value between 2 and 8 for optimal
     // performance.
-    private int tidyRatio = 4;
+    private static final int tidyRatio = 4;
 
 
-    private boolean merge(Node<E> a, NodeState<E> aState, Node<E> pred, NodeState<E> pState, Node<E> b, NodeState<E> bState) {
-        MergeNext<E> pLabel = a != pred ? new MergeNext<E>(a, b, bState) : null;
-        MergeParent<E> mergeParent = new MergeParent<E>(pred, pState, pLabel, b, bState);
-        NodeState<E> aStateL = new NodeState<E>(aState.parent, aState.degree, aState.children, aState.next, aState.seq, mergeParent);
+    private void merge(Node<E> a, NodeState<E> aState, Node<E> pred, NodeState<E> pState, Node<E> b, NodeState<E> bState) {
+        MergeNext<E> pLabel = a != pred ? new MergeNext<>(a, b, bState) : null;
+        MergeParent<E> mergeParent = new MergeParent<>(pred, pState, pLabel, b, bState);
+        NodeState<E> aStateL = new NodeState<>(aState.parent, aState.degree, aState.children, aState.next, aState.seq, mergeParent);
 
         if (pred.getState() == pState && b.getState() == bState && a.compareAndSet(aState, aStateL)) {
             if (a != pred) {
-                return mergeLabelPred(a, aStateL, pred, pState, pLabel, b, bState);
+                mergeLabelPred(a, aStateL, pred, pState, pLabel, b, bState);
             } else {
-                return mergeUpdateB(a, aStateL, pred, pState, b, bState);
+                mergeUpdateB(a, aStateL, pred, pState, b, bState);
             }
         }
-        return false;
     }
 
-    private boolean mergeLabelPred(Node<E> a, NodeState<E> aStateL, Node<E> pred, NodeState<E> pState, MergeNext<E> pLabel, Node<E> b, NodeState<E> bState) {
-        NodeState<E> pStateL = new NodeState<E>(pState.parent, pState.degree, pState.children, pState.next, pState.seq, pLabel);
+    private void mergeLabelPred(Node<E> a, NodeState<E> aStateL, Node<E> pred, NodeState<E> pState, MergeNext<E> pLabel, Node<E> b, NodeState<E> bState) {
+        NodeState<E> pStateL = new NodeState<>(pState.parent, pState.degree, pState.children, pState.next, pState.seq, pLabel);
         if (b.getState() == bState && pred.compareAndSet(pState, pStateL)) {
-            return mergeUpdateB(a, aStateL, pred, pStateL, b, bState);
+            mergeUpdateB(a, aStateL, pred, pStateL, b, bState);
         } else {
             if (a.getState() == aStateL && pred.getState().label != pLabel &&b.getState().parent != a) {
-                NodeState<E> newAState = new NodeState<E>(aStateL.parent, aStateL.degree, aStateL.children, aStateL.next, aStateL.seq, null);
+                NodeState<E> newAState = new NodeState<>(aStateL.parent, aStateL.degree, aStateL.children, aStateL.next, aStateL.seq, null);
                 a.compareAndSet(aStateL, newAState);
             }
         }
-        return false;
     }
 
-    private boolean mergeUpdateB(Node<E> a, NodeState<E> aStateL, Node<E> pred, NodeState<E> pStateL, Node<E> b, NodeState<E> bState) {
+    private void mergeUpdateB(Node<E> a, NodeState<E> aStateL, Node<E> pred, NodeState<E> pStateL, Node<E> b, NodeState<E> bState) {
         Node<E> newNext = aStateL.children.isEmpty() ? null : aStateL.children.head();
-        NodeState<E> bStateU = new NodeState<E>(a, bState.degree, bState.children, newNext, bState.seq + 1, null);
+        NodeState<E> bStateU = new NodeState<>(a, bState.degree, bState.children, newNext, bState.seq + 1, null);
         if (b.getState() == bState && b.compareAndSet(bState, bStateU)) {
             if (a != pred) {
                 mergeUpdatePred(a, aStateL, pred, pStateL, b, bState.next);
             } else {
                 mergeUpdateAPred(a, aStateL, b, bState.next);
             }
-            return true;
         } else {
             if (b.getState().parent != a) { //backtrack
                 if (a != pred) {
-                    NodeState<E> newPStateL = new NodeState<E>(pStateL.parent, pStateL.degree, pStateL.children, pStateL.next, pStateL.seq, null);
+                    NodeState<E> newPStateL = new NodeState<>(pStateL.parent, pStateL.degree, pStateL.children, pStateL.next, pStateL.seq, null);
                     if (pred.getState() == pStateL) {
                         pred.compareAndSet(pStateL, newPStateL);
                     }
                 }
                 if (a.getState() == aStateL) {
-                    NodeState<E> newAStateL = new NodeState<E>(aStateL.parent, aStateL.degree, aStateL.children, aStateL.next, aStateL.seq, null);
+                    NodeState<E> newAStateL = new NodeState<>(aStateL.parent, aStateL.degree, aStateL.children, aStateL.next, aStateL.seq, null);
                     a.compareAndSet(aStateL, newAStateL);
                 }
             }
         }
-        return false;
     }
     private void mergeUpdatePred(Node<E> a, NodeState<E> aStateL, Node<E> pred, NodeState<E> pStateL, Node<E> b,
             Node<E> nextNode) {
-        NodeState<E> pStateU = new NodeState<E>(pStateL.parent, pStateL.degree, pStateL.children, nextNode, pStateL.seq, null);
+        NodeState<E> pStateU = new NodeState<>(pStateL.parent, pStateL.degree, pStateL.children, nextNode, pStateL.seq, null);
         if (pred.getState() == pStateL && pred.compareAndSet(pStateL, pStateU)) {
-            mergeUpdateA(a, aStateL, pred, b);
+            mergeUpdateA(a, aStateL, b);
         }
     }
-    private void mergeUpdateA(Node<E> a, NodeState<E> aStateL, Node<E> pred, Node<E> b) {
-        ISLList<Node<E>> newChildren = new ISLList<Node<E>>(b, aStateL.children); 
-        NodeState<E> aStateU = new NodeState<E>(aStateL.parent, aStateL.degree + 1, newChildren, aStateL.next, aStateL.seq, null);
+    private void mergeUpdateA(Node<E> a, NodeState<E> aStateL, Node<E> b) {
+        ISLList<Node<E>> newChildren = new ISLList<>(b, aStateL.children);
+        NodeState<E> aStateU = new NodeState<>(aStateL.parent, aStateL.degree + 1, newChildren, aStateL.next, aStateL.seq, null);
         if (a.getState() == aStateL) {
             a.compareAndSet(aStateL, aStateU);
         }
     }
     private void mergeUpdateAPred(Node<E> a, NodeState<E> aStateL, Node<E> b, Node<E> nextNode) {
-        ISLList<Node<E>> newChildren = new ISLList<Node<E>>(b, aStateL.children);
-        NodeState<E> aStateU = new NodeState<E>(aStateL.parent, aStateL.degree + 1, newChildren, nextNode, aStateL.seq, null);
+        ISLList<Node<E>> newChildren = new ISLList<>(b, aStateL.children);
+        NodeState<E> aStateU = new NodeState<>(aStateL.parent, aStateL.degree + 1, newChildren, nextNode, aStateL.seq, null);
         if (a.getState() == aStateL) {
             a.compareAndSet(aStateL, aStateU);
         }
@@ -109,7 +105,7 @@ public class BinomialHeap <E extends Comparable<E>> {
                 } else if (newPState.label == label.pLabel) { //pred update has not happened
                     mergeUpdatePred(helpNode, helpState, label.pred, newPState, label.b, label.bState.next);
                 } else { //pred update has happened
-                    mergeUpdateA(helpNode, helpState, label.pred, label.b);
+                    mergeUpdateA(helpNode, helpState, label.b);
                 }
             } else {
                 NodeState<E> newPState = label.pred.getState();
@@ -154,23 +150,21 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     private NodeState<E> labelForDelete(Node<E> pred, Node<E> delNode, NodeState<E> delState, Node<E> newNext) {
-        Delete<E> deleteLabel = new Delete<E>(pred);
-        NodeState<E> delStateL = new NodeState<E>(delState.parent, delState.degree, delState.children, newNext, delState.seq + 1, deleteLabel);
+        Delete<E> deleteLabel = new Delete<>(pred);
+        NodeState<E> delStateL = new NodeState<>(delState.parent, delState.degree, delState.children, newNext, delState.seq + 1, deleteLabel);
         if (delNode.getState() == delState && delNode.compareAndSet(delState,  delStateL)) {
             return delStateL;
         }
         return null;
     }
 
-    private boolean deleteWithParent(Node<E> pred, Node<E> delNode, NodeState<E> delState, Node<E> pPred, Node<E> parent, NodeState<E> pState) {
+    private void deleteWithParent(Node<E> pred, Node<E> delNode, NodeState<E> delState, Node<E> pPred, Node<E> parent, NodeState<E> pState) {
         Node<E> newNext = (delState.next == null) ? pState.next : delState.next;
         NodeState<E> delStateL = labelForDelete(pred, delNode, delState, newNext);
         if (delStateL != null) {
             helpDelete(pPred, parent, pState);
             completeDelete(pred, delNode, delStateL);
-            return true;
         }
-        return false;
     }
 
     private void completeDelete(Node<E> pred, Node<E> delNode, NodeState<E> delStateL) {
@@ -182,7 +176,7 @@ public class BinomialHeap <E extends Comparable<E>> {
             Node<E> lastC = children.last();
             NodeState<E> lastCState = lastC.getState();
             if (lastCState.parent == delNode && lastCState.next != next) {
-                NodeState<E> newCState = new NodeState<E>(lastCState.parent, lastCState.degree, lastCState.children, next, lastCState.seq, lastCState.label);
+                NodeState<E> newCState = new NodeState<>(lastCState.parent, lastCState.degree, lastCState.children, next, lastCState.seq, lastCState.label);
                 if (lastC.getState() == lastCState) {
                     lastC.compareAndSet(lastCState, newCState);
                 }
@@ -194,7 +188,7 @@ public class BinomialHeap <E extends Comparable<E>> {
             for (Node<E> c : children) {
                 NodeState<E> cState = c.getState();
                 if (cState.parent == delNode) {
-                    NodeState<E> newCState = new NodeState<E>(null, cState.degree, cState.children, cState.next, cState.seq, cState.label);
+                    NodeState<E> newCState = new NodeState<>(null, cState.degree, cState.children, cState.next, cState.seq, cState.label);
                     c.compareAndSet(cState, newCState);
                 }
             }
@@ -220,7 +214,7 @@ public class BinomialHeap <E extends Comparable<E>> {
 
     private boolean completePredUpdate(Node<E> pred, NodeState<E> predState, Node<E> delNode, Node<E> newNext) {
         if (predState.label == null) {
-            NodeState<E> newPredState = new NodeState<E>(predState.parent, predState.degree, predState.children, newNext, predState.seq, predState.label);
+            NodeState<E> newPredState = new NodeState<>(predState.parent, predState.degree, predState.children, newNext, predState.seq, null);
             if (pred.getState() == predState && pred.compareAndSet(predState,  newPredState)) {
                 delNode.deleted = true;
                 return true;
@@ -283,37 +277,35 @@ public class BinomialHeap <E extends Comparable<E>> {
     private Object[] skipDeleted(Node<E> n) {
         Object[] result = new Object[3];
         if (n == null) {
-            result[0] = n;
+            result[0] = null;
             result[1] = -1;
             result[2] = new ISLList<Node<E>>();
-            return result;
         } else {
             NodeState<E> nState = n.getState();
             if (nState.label instanceof Delete) {
                 result = skipDeleted(nState.next);
-                result[2] = new ISLList<Node<E>>(n, (ISLList<Node<E>>)result[2]);
+                result[2] = new ISLList<>(n, (ISLList<Node<E>>) result[2]);
 
-                return result;
             } else {
                 result[0] = n;
                 result[1] = nState.seq;
                 result[2] = new ISLList<Node<E>>();
-                return result;
             }
         }
+        return result;
     }
 
     private Object[] skipMerge(Node<E> a, Node<E> b, NodeState<E> bState) {
         Object[] result = skipDeleted(bState.next);
         NodeState<E> myBState = b.getState();
         if (myBState == bState) {
-            result[2] = new ISLList<Node<E>>(b, (ISLList<Node<E>>)result[2]);
+            result[2] = new ISLList<>(b, (ISLList<Node<E>>) result[2]);
             return result;
         } else if (myBState.parent == a) {
             return result;
         } else if (myBState.label instanceof Delete) {
             result = skipDeleted(myBState.next);
-            result[2] = new ISLList<Node<E>>(b, (ISLList<Node<E>>)result[2]);
+            result[2] = new ISLList<>(b, (ISLList<Node<E>>) result[2]);
             return result;
         } else {
             result = new Object[3];
@@ -400,16 +392,16 @@ public class BinomialHeap <E extends Comparable<E>> {
         if (e == null) {
             throw new Exception("null values not allowed!");
         }
-        Node<E> myNode = new Node<E>(e);
+        Node<E> myNode = new Node<>(e);
         Node<E> curr = head;
-        NodeState<E> currState = null;
+        NodeState<E> currState;
         while (true) {
             currState = curr.maybeClearParent();
             if (currState.parent != null) {
                 curr = currState.parent;
             } else if(currState.label == null) {
                 if (currState.next == null) { //at last node
-                    NodeState<E> newCurrState = new NodeState<E>(currState.parent,currState.degree,currState.children,myNode, currState.seq, currState.label);
+                    NodeState<E> newCurrState = new NodeState<>(null, currState.degree, currState.children, myNode, currState.seq, null);
                     if (curr.getState() == currState) {
                         if (curr.compareAndSet(currState, newCurrState)) {
                             count.incrementAndGet();
@@ -421,9 +413,9 @@ public class BinomialHeap <E extends Comparable<E>> {
                     }
                 } else if (currState.degree == 0 && curr.key != null && curr.key.compareTo(e) <= 0) { //insert below curr
                     myNode.getState().parent = curr;
-                    ISLList<Node<E>> newChildren = new ISLList<Node<E>>();
-                    newChildren = new ISLList<Node<E>>( myNode, newChildren);
-                    NodeState<E> newCurrState = new NodeState<E>(currState.parent, 1, newChildren, currState.next, currState.seq, currState.label);
+                    ISLList<Node<E>> newChildren = new ISLList<>();
+                    newChildren = new ISLList<>(myNode, newChildren);
+                    NodeState<E> newCurrState = new NodeState<>(currState.parent, 1, newChildren, currState.next, currState.seq, currState.label);
                     if (curr.getState() == currState && curr.compareAndSet(currState, newCurrState)) {
                         count.incrementAndGet();
                         maybeTidy();
@@ -488,7 +480,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     public E minimum() {
-        PriorityQueue<Node<E>> minList = new PriorityQueue<Node<E>>();
+        PriorityQueue<Node<E>> minList = new PriorityQueue<>();
         Node<E> curr = head;
         int currSeq = curr.getSeq();
         long startTime = java.lang.System.nanoTime();
@@ -530,10 +522,12 @@ public class BinomialHeap <E extends Comparable<E>> {
     private void insertNodes(ISLList<Node<E>> ns, long startTime, PriorityQueue<Node<E>> minList) {
         for (Node<E> n : ns) {
             NodeState<E> nState = n.getState();
-            if (nState.label != null && nState.label instanceof Delete) {
+            if (nState.label instanceof Delete) {
                 Delete<E> del = (Delete<E>) nState.label;
                 if (del.ts - startTime <= 0) {
                     insertNodes(nState.children, startTime, minList);
+                } else {
+                    minList.offer(n);
                 }
             } else {
                 minList.offer(n);
@@ -542,7 +536,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     public E deleteMin() {
-        PriorityQueue<NodePair<E>> minList = new PriorityQueue<NodePair<E>>();
+        PriorityQueue<NodePair<E>> minList = new PriorityQueue<>();
         //TODO: insert children
         Node<E> curr = head;
         int currSeq = curr.getSeq();
@@ -568,12 +562,12 @@ public class BinomialHeap <E extends Comparable<E>> {
                             pred = children.last();
                         }
                     } else {
-                        minList.offer(new NodePair<E>(pred, skipNode));
+                        minList.offer(new NodePair<>(pred, skipNode));
                         pred = skipNode;
                     }
                 }
                 if (next != null) {
-                    minList.offer(new NodePair<E>(pred, next));
+                    minList.offer(new NodePair<>(pred, next));
                     curr = next;
                     currSeq = nextSeq;
                 } else if (minList.isEmpty()) {
@@ -619,7 +613,7 @@ public class BinomialHeap <E extends Comparable<E>> {
         while (!cs.isEmpty()) {
             Node<E> c = cs.head();
             cs = cs.tail();
-            minList.offer(new NodePair<E>(p, c));
+            minList.offer(new NodePair<>(p, c));
             p = c;
         }
 
@@ -660,7 +654,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     private void tidy() {
-        HashMap<Integer, NodePair<E>> buckets = new HashMap<Integer, NodePair<E>>();
+        HashMap<Integer, NodePair<E>> buckets = new HashMap<>();
         Node<E> curr = head;
         boolean done = false;
         while (!done) {
@@ -692,11 +686,11 @@ public class BinomialHeap <E extends Comparable<E>> {
                 NodeState<E> predOtherState = predOther.maybeClearParent();
                 if (other == curr || !(otherState.label == null && otherState.parent == null)) {
                     if (predState.next == curr) {
-                        buckets.put(degree, new NodePair<E>(pred, curr));
+                        buckets.put(degree, new NodePair<>(pred, curr));
                     }
                 } else if (otherState.degree != degree) {
                     if (predState.next == curr) {
-                        buckets.put(degree, new NodePair<E>(pred, curr));
+                        buckets.put(degree, new NodePair<>(pred, curr));
                     } else {
                         buckets.put(degree, null);
                     }
@@ -708,11 +702,11 @@ public class BinomialHeap <E extends Comparable<E>> {
                     } else if (predOtherState.next == other && predOtherState.label == null && predOtherState.parent == null) {
                         merge(curr, currState, predOther, predOtherState, other, otherState);
                     } else if (predState.next == curr) {
-                        buckets.put(degree, new NodePair<E>(pred, curr));
+                        buckets.put(degree, new NodePair<>(pred, curr));
                     }
                 }
             } else if (predState.next == curr) {
-                buckets.put(degree, new NodePair<E>(pred, curr));
+                buckets.put(degree, new NodePair<>(pred, curr));
             }
         }
     }
@@ -750,13 +744,11 @@ public class BinomialHeap <E extends Comparable<E>> {
         NodeState<E> myBState = b.getState();
         if (myBState == bState || myBState.parent == a) {
             returnVal[0] = bState.next;
-            returnVal[1] = true;
-            return returnVal;
         } else {
             returnVal[0] = b;
-            returnVal[1] = true;
-            return returnVal;
         }
+        returnVal[1] = true;
+        return returnVal;
     }
 
     public int size() {

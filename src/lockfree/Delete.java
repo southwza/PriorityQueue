@@ -1,6 +1,6 @@
 package lockfree;
 
-public class Delete <E extends Comparable<E>> extends Label {
+public class Delete <E extends Comparable<E>> implements Label {
     final Node<E> pred;
     final long ts = java.lang.System.nanoTime();
 

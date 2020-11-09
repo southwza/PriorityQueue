@@ -1,7 +1,6 @@
 package lockfree;
 
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -9,47 +8,38 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LockFreeTest {
 
     @Test
     void test() {
-        BinomialHeap<Integer> lockFree = new BinomialHeap<Integer>();
+        BinomialHeap<Integer> lockFree = new BinomialHeap<>();
 
         final ExecutorService executorService = Executors.newFixedThreadPool(8);
-        final ArrayList<Future> listOfFutures = new ArrayList<>();
+        final ArrayList<Future<?>> listOfFutures = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
-            final Future future = executorService.submit(new Runnable()
-            {
-               @Override
-               public void run() {
-                   for (int j = 0; j < 100; j++) {
-                       try {
-                           lockFree.insert(j);
-                       } catch (Exception e) {
-                           // TODO Auto-generated catch block
-                           e.printStackTrace();
-                       }
-                   }
-               }
+            final Future<?> future = executorService.submit(() -> {
+                for (int j = 0; j < 100; j++) {
+                    try {
+                        lockFree.insert(j);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
             });
             listOfFutures.add(future);
         }
 
         // Wait for enqueue operations
-        for (Future<Integer> future: listOfFutures)
+        for (Future<?> future: listOfFutures)
         {
            try
            {
               future.get();
-           } catch (InterruptedException e)
-           {
-              System.out.println("Exception was thrown." + e.toString());
-              e.printStackTrace();
-              assert (false);
-           } catch (ExecutionException e)
+           } catch (InterruptedException | ExecutionException e)
            {
               System.out.println("Exception was thrown." + e.toString());
               e.printStackTrace();
@@ -66,9 +56,9 @@ class LockFreeTest {
 
     @Test
     void testDeleteMin() throws Exception {
-        BinomialHeap<Integer> lockFree = new BinomialHeap<Integer>();
+        BinomialHeap<Integer> lockFree = new BinomialHeap<>();
         Integer val = lockFree.deleteMin();
-        assertEquals(null, val);
+        assertNull(val);
         lockFree.insert(3);
         lockFree.insert(6);
         lockFree.insert(0);
@@ -79,63 +69,49 @@ class LockFreeTest {
         assertEquals(3, lockFree.deleteMin());
         assertEquals(4, lockFree.deleteMin());
         assertEquals(6, lockFree.deleteMin());
-        assertEquals(null, lockFree.deleteMin());
+        assertNull(lockFree.deleteMin());
     }
 
     @Test
-    void testDeleteMin2() throws Exception {
-        BinomialHeap<Integer> lockFree = new BinomialHeap<Integer>();
-        int numThreads = 8;
+    void testDeleteMin2() {
+        BinomialHeap<Integer> lockFree = new BinomialHeap<>();
 
         final ExecutorService executorService = Executors.newFixedThreadPool(8);
-        ArrayList<Future> listOfFutures = new ArrayList<>();
+        ArrayList<Future<?>> listOfFutures = new ArrayList<>();
 
         //Thread #1
-        Future future = executorService.submit(new Runnable()
-        {
-           @Override
-           public void run() {
-               for (int j = 0; j < 1000; j++) {
-                   try {
-                       lockFree.insert(j);
-                   } catch (Exception e) {
-                       // TODO Auto-generated catch block
-                       e.printStackTrace();
-                   }
-               }
-           }
+        Future<?> future = executorService.submit(() -> {
+            for (int j = 0; j < 1000; j++) {
+                try {
+                    lockFree.insert(j);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
         });
         listOfFutures.add(future);
 
         //Thread #2
-        future = executorService.submit(new Runnable()
-        {
-           @Override
-           public void run() {
-               for (int j = 1000; j < 2000; j++) {
-                   try {
-                       lockFree.insert(j);
-                   } catch (Exception e) {
-                       // TODO Auto-generated catch block
-                       e.printStackTrace();
-                   }
-               }
-           }
+        future = executorService.submit(() -> {
+            for (int j = 1000; j < 2000; j++) {
+                try {
+                    lockFree.insert(j);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
         });
         listOfFutures.add(future);
 
         // Wait for enqueue operations
-        for (Future<Integer> f: listOfFutures)
+        for (Future<?> f: listOfFutures)
         {
            try
            {
               future.get();
-           } catch (InterruptedException e)
-           {
-              System.out.println("Exception was thrown." + e.toString());
-              e.printStackTrace();
-              assert (false);
-           } catch (ExecutionException e)
+           } catch (InterruptedException | ExecutionException e)
            {
               System.out.println("Exception was thrown." + e.toString());
               e.printStackTrace();
@@ -153,7 +129,7 @@ class LockFreeTest {
         assertEquals(0, lockFree.size());
         assertTrue(lockFree.isEmpty());
 
-        assertEquals(null, lockFree.deleteMin());
+        assertNull(lockFree.deleteMin());
     }
 
 }

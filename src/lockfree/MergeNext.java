@@ -1,6 +1,6 @@
 package lockfree;
 
-public class MergeNext <E extends Comparable<E>> extends Label {
+public class MergeNext <E extends Comparable<E>> implements Label {
     final Node<E> a;
     final Node<E> b; // then new 'child' node
     final NodeState<E> bState;

@@ -1,12 +1,12 @@
 package lockfree;
 
 public class NodeState <E extends Comparable<E>> {
-    Node<E> parent = null;
+    Node<E> parent;
     int degree;
     ISLList<Node<E>> children;
     Node<E> next;
     int seq;
-    Label label = null;
+    Label label;
 
     public NodeState(Node<E> parent, int degree, ISLList<Node<E>> children, Node<E> next, int seq, Label label) {
         this.parent = parent;

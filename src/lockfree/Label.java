@@ -1,5 +1,5 @@
 package lockfree;
 
-public abstract class Label {
+public interface Label {
 
 }
