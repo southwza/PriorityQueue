@@ -11,7 +11,7 @@ public class BenchmarkRunner {
    public static void main(String[] args) throws RunnerException {
 
       Options options = new OptionsBuilder()
-            .include(BenchmarkExample.class.getSimpleName())
+            .include(BenchMarkWorstCase.class.getSimpleName())
             .timeout(TimeValue.minutes(1))
             .warmupIterations(3) // Default is 5
             .warmupTime(TimeValue.seconds(5)) // Default is 10
