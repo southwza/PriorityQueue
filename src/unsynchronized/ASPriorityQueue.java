@@ -2,6 +2,7 @@ package unsynchronized;
 import java.util.AbstractQueue;
 import java.util.Arrays;
 import java.util.Iterator;
+import Interfaces.IPriorityQueue;
 /**
  * Basic implementation of a Priority Queue that is not thread safe. This is
  * implemented in the Java style where instead of passing in a separate object
@@ -25,7 +26,7 @@ import java.util.Iterator;
  * @param <E>
  */
 @SuppressWarnings("unchecked")
-public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> {
+public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> implements IPriorityQueue<E> {
 
     private int size = 0;
     private Object[] heapArray;
@@ -35,10 +36,12 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> {
         heapArray = new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
+    @Override
     public boolean enqueue(E e) {
         return offer(e);
     }
 
+    @Override
     public E dequeue() {
         return poll();
     }
