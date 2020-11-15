@@ -1,3 +1,5 @@
+package Utils;
+
 import java.util.Random;
 
 public class TestCasesGenerator
@@ -5,16 +7,21 @@ public class TestCasesGenerator
    // NOTE: Assumes lower value is higher priority
    enum TestCaseMode
    {
-      kBestCase,
-      kWorstCase,
-      kRandom
+      AscendingOrder,
+      DescendingOrder,
+      RandomOrder
    }
 
-   // Usage: java TestCasesGenerator size TestCaseMode OutputFile.txt
-   // Example: java TestCasesGenerator 10 0 test1.txt
+   private static String kUsageHelpMessage =
+               "Usage: java Utils.TestCasesGenerator DataSize Mode \n" +
+               "Valid Modes: AscendingOrder:0 DescendingOrder:1 Random:2 \n" +
+               "Example: java Utils.TestCasesGenerator 100 0 \n";
+
+   // Usage: java Utils.TestCasesGenerator size TestCaseMode OutputFile.txt
+   // Example: java Utils.TestCasesGenerator 10 0 test1.txt
    public static void main(String args[])
    {
-      final int kExpectedNumberOfArguments = 3;
+      final int kExpectedNumberOfArguments = 2;
       final boolean kDebug = false;
 
       String outputStr;
@@ -23,59 +30,64 @@ public class TestCasesGenerator
       {
          final int kDataSetSize = Integer.parseInt(args[0]);
          final int kMode = Integer.parseInt(args[1]);
-         final String kFileName = args[2];
 
-         TestCaseMode mode = TestCaseMode.kBestCase;
+         TestCaseMode mode = TestCaseMode.AscendingOrder;
 
          switch(kMode)
          {
             case 0:
-               mode = TestCaseMode.kBestCase;
+               mode = TestCaseMode.AscendingOrder;
                break;
             case 1:
-               mode = TestCaseMode.kWorstCase;
+               mode = TestCaseMode.DescendingOrder;
                break;
             case 2:
-               mode = TestCaseMode.kRandom;
+               mode = TestCaseMode.RandomOrder;
                break;
             default:
                System.out.println("Invalid Mode!");
-               System.out.println("Valid Modes: BestCase:0 WorstCase:1 Random:2");
+               System.out.println(kUsageHelpMessage);
                System.exit(-1);
          }
 
          outputStr = getTestCaseOutputStr(mode, kDataSetSize);
-         Utils.writeToFile(outputStr, kFileName);
+         final String kOutputFileName = getOutputFileName(mode, kDataSetSize);
+         UtilityFunctions.writeToFile(outputStr, kOutputFileName);
       } else if (kDebug) {
-         outputStr = getTestCaseOutputStr(TestCaseMode.kBestCase, 10);
-         Utils.writeToFile(outputStr, "debug_output.txt");
+         final int kDataSetSize = 10;
+         final TestCaseMode mode = TestCaseMode.AscendingOrder;
+         outputStr = getTestCaseOutputStr(mode, kDataSetSize);
+         final String kOutputFileName = getOutputFileName(mode, kDataSetSize);;
+         UtilityFunctions.writeToFile(outputStr, "debug_output.txt");
       }
       else
       {
          System.out.println("Invalid Number of Arguments");
-         System.out.println("Usage: java TestCasesGenerator NumberOfPreferences Mode outputFile.txt");
-         System.out.println("Example: java TestCasesGenerator 100 0 test1.txt");
-         System.out.println("Valid Modes: BestCase:0 WorstCase:1 Random:2");
+         System.out.println(kUsageHelpMessage);
          System.exit(-1);
       }
+   }
+
+   private static String getOutputFileName(TestCaseMode mode, int dataSize) {
+      return mode.toString() + "_" + dataSize + ".txt";
    }
 
    private static String getTestCaseOutputStr(TestCaseMode mode, int size) {
       String outputStr = "";
 
       switch (mode) {
-         case kBestCase:
+         case AscendingOrder:
             outputStr = getBestCaseOutputStr(size);
             break;
-         case kWorstCase:
+         case DescendingOrder:
             outputStr = getWorstCaseOutputStr(size);
             break;
-         case kRandom:
+         case RandomOrder:
             outputStr = getRandomCaseOutputStr(size);
             break;
          default:
             System.out.println("Invalid Mode!");
-            System.out.println("Valid Modes: BestCase:0 WorstCase:1 Random:2");
+            System.out.println(kUsageHelpMessage);
             System.exit(-1);
       }
 

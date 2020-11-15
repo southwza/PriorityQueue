@@ -1,7 +1,8 @@
-package unsynchronized;
+package queues;
 
 import Interfaces.IPriorityQueue;
 import org.junit.Test;
+import queues.ASPriorityQueue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
