@@ -1,7 +1,6 @@
 package queues;
 
 import Interfaces.IPriorityQueue;
-import org.junit.Test;
 import queues.ASPriorityQueue;
 
 import java.util.ArrayList;
@@ -10,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import queues.ASPriorityQueue;
 
 public class TestASPriorityQueue {
 

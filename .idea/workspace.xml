@@ -2,38 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303fa409-4877-44fa-832c-a24354cb942e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/BenchMarkBestCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/BenchMarkRandomCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/BenchMarkWorstCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/TestUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingOrder_1000.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/DescendingOrder_1000.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/RandomOrder_1000.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/queues/LockBasedPriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/queues/LockFreePriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/queues/PriorityQueueTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/BinomialHeap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/Delete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/ISLList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/Label.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeNext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeParent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/NodePair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lockfree/NodeState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/lockfree/LockFreeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PriorityQueue.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PriorityQueue.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/IPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/IPriorityQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaLibPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queues/JavaLibPriorityQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LockBasedPriorityQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LockFreePriorityQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCasesGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/TestCasesGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/UtilityFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/unsynchronized/ASPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queues/ASPriorityQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/bench/BenchMarkWorstCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/bench/BenchmarkExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchmarkExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/bench/BenchmarkRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchmarkRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/unsynchronized/TestASPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +30,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1jDULkzkQYg3rmnVvIQ27DwPKV3" />
   <component name="ProjectViewState">
@@ -162,9 +150,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.BenchmarkRunner" />
-        <item itemvalue="Application.TestUtils (1)" />
-        <item itemvalue="JUnit.PriorityQueueTests" />
         <item itemvalue="JUnit.TestASPriorityQueue" />
+        <item itemvalue="JUnit.PriorityQueueTests" />
+        <item itemvalue="Application.TestUtils (1)" />
         <item itemvalue="Application.TestUtils" />
       </list>
     </recent_temporary>
@@ -230,29 +218,29 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state width="458" height="466" key="DebuggerActiveHint/0.23.1440.834@0.23.1440.834" timestamp="1605162118833" />
-    <state width="1396" height="67" key="GridCell.Tab.0.bottom" timestamp="1605467754978">
+    <state width="1396" height="340" key="GridCell.Tab.0.bottom" timestamp="1605468491377">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
-    <state width="1396" height="67" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605467754978" />
+    <state width="1396" height="340" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605468491377" />
     <state width="1396" height="333" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1605458574573" />
-    <state width="1396" height="67" key="GridCell.Tab.0.center" timestamp="1605467754977">
+    <state width="1396" height="340" key="GridCell.Tab.0.center" timestamp="1605468491376">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
-    <state width="1396" height="67" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1605467754977" />
+    <state width="1396" height="340" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
     <state width="1396" height="333" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="67" key="GridCell.Tab.0.left" timestamp="1605467754977">
+    <state width="1396" height="340" key="GridCell.Tab.0.left" timestamp="1605468491375">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
-    <state width="1396" height="67" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1605467754977" />
+    <state width="1396" height="340" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1605468491375" />
     <state width="1396" height="333" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="67" key="GridCell.Tab.0.right" timestamp="1605467754978">
+    <state width="1396" height="340" key="GridCell.Tab.0.right" timestamp="1605468491376">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
-    <state width="1396" height="67" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1605467754978" />
+    <state width="1396" height="340" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
     <state width="1396" height="333" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
     <state width="1396" height="426" key="GridCell.Tab.1.bottom" timestamp="1605464989373">
       <screen x="0" y="23" width="1440" height="834" />
