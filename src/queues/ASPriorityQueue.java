@@ -1,8 +1,10 @@
-package unsynchronized;
+package queues;
 import java.util.AbstractQueue;
 import java.util.Arrays;
 import java.util.Iterator;
 import Interfaces.IPriorityQueue;
+import org.apache.commons.math3.exception.NullArgumentException;
+
 /**
  * Basic implementation of a Priority Queue that is not thread safe. This is
  * implemented in the Java style where instead of passing in a separate object
@@ -48,6 +50,10 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
 
     @Override
     public boolean offer(E e) {
+        if (e == null) {
+            throw new NullArgumentException();
+        }
+
         if (heapArray.length - 1 == size) {
             growArray();
         }
@@ -73,6 +79,12 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
     }
 
     @Override
+    public void clear() {
+        size = 0;
+        heapArray = new Object[DEFAULT_INITIAL_CAPACITY];
+    }
+
+    @Override
     public E peek() {
         // TODO Auto-generated method stub
         return null;
@@ -86,6 +98,11 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public String getImplementationName() {
+        return "ASPriorityQueue";
     }
 
     //Bubble up the element at the provided index

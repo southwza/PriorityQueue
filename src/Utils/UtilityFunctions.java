@@ -1,13 +1,14 @@
+package Utils;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Utils
+public class UtilityFunctions
 {
    public static void writeToFile(String outputString, String outputFileName)
    {
@@ -32,7 +33,6 @@ public class Utils
 
       try (Stream<String> stream = Files.lines(Paths.get(fileName)))
       {
-         // This remove data from stream object into fileLines
          final List<String> fileLines = stream.collect(Collectors.toList());
          final int size = fileLines.size();
          final int[] array = new int[size];
