@@ -1,4 +1,4 @@
-package lockfree;
+package lowe_lockfree_queue;
 
 public class NodeState <E extends Comparable<E>> {
     Node<E> parent;

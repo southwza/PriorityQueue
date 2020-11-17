@@ -1,4 +1,6 @@
-package lockfree;
+package lowe_lockfree_queue;
+
+import org.apache.commons.math3.exception.NullArgumentException;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -15,7 +17,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     private final AtomicInteger count = new AtomicInteger(0);
 
     // This number determines how often a thread attempts to tidy the heap
-    // structure. A higher number results in more tidying, which results in fewer
+    // structure. A smaller number results in more tidying, which results in fewer
     // root nodes and faster traversal of the queue, but also results in more work
     // to tidy up the queue. The author suggests a value between 2 and 8 for optimal
     // performance.
@@ -158,13 +160,15 @@ public class BinomialHeap <E extends Comparable<E>> {
         return null;
     }
 
-    private void deleteWithParent(Node<E> pred, Node<E> delNode, NodeState<E> delState, Node<E> pPred, Node<E> parent, NodeState<E> pState) {
+    private boolean deleteWithParent(Node<E> pred, Node<E> delNode, NodeState<E> delState, Node<E> pPred, Node<E> parent, NodeState<E> pState) {
         Node<E> newNext = (delState.next == null) ? pState.next : delState.next;
         NodeState<E> delStateL = labelForDelete(pred, delNode, delState, newNext);
         if (delStateL != null) {
             helpDelete(pPred, parent, pState);
             completeDelete(pred, delNode, delStateL);
+            return true;
         }
+        return false;
     }
 
     private void completeDelete(Node<E> pred, Node<E> delNode, NodeState<E> delStateL) {
@@ -196,8 +200,9 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
     private void predUpdate(Node<E> pred, Node<E> delNode, Node<E> newNext) {
         NodeState<E> predState = pred.maybeClearParent();
-        if (predState.next == delNode && predState.parent == null) {
-                completePredUpdate(pred, predState, delNode, newNext);
+        if (predState.next == delNode && predState.parent == null &&
+                completePredUpdate(pred, predState, delNode, newNext)) {
+            //Done
         } else {
             while (!delNode.deleted) {
                 Object[] pTuple = findPred(delNode);
@@ -215,7 +220,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     private boolean completePredUpdate(Node<E> pred, NodeState<E> predState, Node<E> delNode, Node<E> newNext) {
         if (predState.label == null) {
             NodeState<E> newPredState = new NodeState<>(predState.parent, predState.degree, predState.children, newNext, predState.seq, null);
-            if (pred.getState() == predState && pred.compareAndSet(predState,  newPredState)) {
+            if (pred.getState() == predState && pred.compareAndSet(predState, newPredState)) {
                 delNode.deleted = true;
                 return true;
             } else if (delNode.deleted) {
@@ -248,7 +253,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     private Object[] advance(Node<E> curr, Integer currSeq) {
-        Object[] result;
+        Object[] result = null;
         while(true) {
             NodeState<E> currState = curr.getState();
             if (currState.seq != currSeq) {
@@ -306,14 +311,12 @@ public class BinomialHeap <E extends Comparable<E>> {
         } else if (myBState.label instanceof Delete) {
             result = skipDeleted(myBState.next);
             result[2] = new ISLList<>(b, (ISLList<Node<E>>) result[2]);
-            return result;
         } else {
-            result = new Object[3];
             result[0] = b;
             result[1] = myBState.seq;
             result[2] = new ISLList<Node<E>>();
-            return result;
         }
+        return result;
     }
 
     private Object[] findPred(Node<E> delNode) {
@@ -323,6 +326,7 @@ public class BinomialHeap <E extends Comparable<E>> {
         while (curr != null) {
             Object[] nodeInfo = advance(curr, currSeq);
             if (nodeInfo == null) {
+                //restart
                 curr = this.head;
                 currSeq = curr.getSeq();
             } else {
@@ -346,10 +350,12 @@ public class BinomialHeap <E extends Comparable<E>> {
                                 returnVal[1] = pState;
                                 return returnVal;
                             } else {
+                                //restart
                                 curr = this.head;
                                 currSeq = curr.getSeq();
                             }
                         } else {
+                            //restart
                             curr = this.head;
                             currSeq = curr.getSeq();
                         }
@@ -387,10 +393,10 @@ public class BinomialHeap <E extends Comparable<E>> {
         return returnVal;
     }
 
-    public void insert(E e) throws Exception {
+    public void insert(E e) {
         //In this implementation, null is not allowed
         if (e == null) {
-            throw new Exception("null values not allowed!");
+            throw new NullArgumentException();
         }
         Node<E> myNode = new Node<>(e);
         Node<E> curr = head;
@@ -480,7 +486,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     public E minimum() {
-        PriorityQueue<Node<E>> minList = new PriorityQueue<>();
+        MinList<Node<E>> minList = new MinList<>(10);
         Node<E> curr = head;
         int currSeq = curr.getSeq();
         long startTime = java.lang.System.nanoTime();
@@ -497,13 +503,13 @@ public class BinomialHeap <E extends Comparable<E>> {
                 ISLList<Node<E>> skipNodes = (ISLList<Node<E>>) nodeInfo[2];
                 insertNodes(skipNodes, startTime, minList);
                 if (next != null) {
-                    minList.offer(next);
+                    minList.insert(next);
                     curr = next;
                     currSeq = nextSeq;
                 } else if (minList.isEmpty()) {
                     return null;
                 } else { //at end of list; find first non-deleted node in minList
-                    Node<E> minNode = minList.poll();
+                    Node<E> minNode = minList.removeFirst();
                     if (minNode == null) {
                         //restart
                         curr = head;
@@ -519,7 +525,7 @@ public class BinomialHeap <E extends Comparable<E>> {
         }
     }
 
-    private void insertNodes(ISLList<Node<E>> ns, long startTime, PriorityQueue<Node<E>> minList) {
+    private void insertNodes(ISLList<Node<E>> ns, long startTime, MinList<Node<E>> minList) {
         for (Node<E> n : ns) {
             NodeState<E> nState = n.getState();
             if (nState.label instanceof Delete) {
@@ -527,17 +533,16 @@ public class BinomialHeap <E extends Comparable<E>> {
                 if (del.ts - startTime <= 0) {
                     insertNodes(nState.children, startTime, minList);
                 } else {
-                    minList.offer(n);
+                    minList.insert(n);
                 }
             } else {
-                minList.offer(n);
+                minList.insert(n);
             }
         }
     }
 
     public E deleteMin() {
-        PriorityQueue<NodePair<E>> minList = new PriorityQueue<>();
-        //TODO: insert children
+        MinList<NodePair<E>> minList = new MinList<>(10);
         Node<E> curr = head;
         int currSeq = curr.getSeq();
         while (true) {
@@ -562,18 +567,18 @@ public class BinomialHeap <E extends Comparable<E>> {
                             pred = children.last();
                         }
                     } else {
-                        minList.offer(new NodePair<>(pred, skipNode));
+                        minList.insert(new NodePair<>(pred, skipNode));
                         pred = skipNode;
                     }
                 }
                 if (next != null) {
-                    minList.offer(new NodePair<>(pred, next));
+                    minList.insert(new NodePair<>(pred, next));
                     curr = next;
                     currSeq = nextSeq;
                 } else if (minList.isEmpty()) {
                     return null;
                 } else {
-                    NodePair<E> minPair = minList.poll();
+                    NodePair<E> minPair = minList.removeFirst();
                     if (minPair == null) {
                         //restart
                         //TODO implement Backoff()
@@ -591,7 +596,8 @@ public class BinomialHeap <E extends Comparable<E>> {
                             NodeState<E> delState = delNode.getState();
                             Label label = delState.label;
                             if (label instanceof Delete) {
-                                insertChildren(predMin, delState.children, minList);
+                                pred = ((Delete<E>)label).pred;
+                                insertChildren(pred, delState.children, minList);
                             } else {
                                 //restart
                                 //TODO implement Backoff()
@@ -606,14 +612,14 @@ public class BinomialHeap <E extends Comparable<E>> {
         }
     }
 
-    private void insertChildren(Node<E> pred, ISLList<Node<E>> children, PriorityQueue<NodePair<E>> minList) {
+    private void insertChildren(Node<E> pred, ISLList<Node<E>> children, MinList<NodePair<E>> minList) {
         ISLList<Node<E>> cs = children;
         Node<E> p = pred;
 
         while (!cs.isEmpty()) {
             Node<E> c = cs.head();
             cs = cs.tail();
-            minList.offer(new NodePair<>(p, c));
+            minList.insert(new NodePair<>(p, c));
             p = c;
         }
 
@@ -636,8 +642,8 @@ public class BinomialHeap <E extends Comparable<E>> {
                 Label pLabel = pState.label;
                 if (pLabel instanceof Delete) {
                     Node<E> pPred = ((Delete<E>)pLabel).pred;
-                    deleteWithParent(pred, delNode, delState, pPred, parent, pState);
-                    return tryDelete(pred, delNode);
+                    return deleteWithParent(pred, delNode, delState, pPred, parent, pState) ||
+                            tryDelete(pred, delNode);
                 } else {
                     return false;
                 }
@@ -755,7 +761,23 @@ public class BinomialHeap <E extends Comparable<E>> {
         return count.get();
     }
 
+    //This is just a debugging method to manually count each node in the heap.
+    //It is not thread safe; use count() instead
+    public int hardCount() {
+        if (head.getState().next == null) {
+            return 0;
+        } else {
+            return head.getState().next.topCount();
+        }
+    }
+
     public boolean isEmpty() {
         return count.get() == 0;
+    }
+
+    public void clear() {
+        head = new Node<>(null); //sentinel head node
+        opCount.set(0);
+        count.set(0);
     }
 }
