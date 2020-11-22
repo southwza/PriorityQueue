@@ -1,5 +1,6 @@
-package lockfree;
+package lowe_lockfree_queue;
 
+import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
@@ -44,4 +45,22 @@ public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
         return key.compareTo(o.key);
     }
 
+    public int topCount() {
+        int returnVal = 0;
+        if (getState().next != null) {
+            returnVal = getState().next.topCount();
+        }
+        int tc = treeCount();
+        returnVal += tc;
+        return returnVal;
+    }
+
+    public int treeCount() {
+        LinkedList a;
+        int returnVal = 1;
+        for (Node<E> child : getState().children) {
+            returnVal += child.treeCount();
+        }
+        return returnVal;
+    }
 }

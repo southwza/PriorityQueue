@@ -1,4 +1,4 @@
-package lockfree;
+package lowe_lockfree_queue;
 
 import java.util.Iterator;
 
@@ -61,17 +61,26 @@ public class ISLList <E> implements Iterable<E> {
     class ISLListIterator implements Iterator<E> {
 
         ISLList<E> curr;
+        boolean init = false;
         public ISLListIterator(ISLList<E> curr) {
             this.curr = curr;
         }
 
         @Override
         public boolean hasNext() {
-            return curr.next != null && curr.next.next != null;
+            if (!init) {
+                return curr.value != null;
+            } else {
+                return curr.next != null && curr.next.next != null;
+            }
         }
 
         @Override
         public E next() {
+            if (!init) {
+                init = true;
+                return curr.value;
+            }
             curr = curr.next;
             if (curr == null) {
                 return null;

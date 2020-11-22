@@ -32,7 +32,8 @@ public class PriorityQueueTests
    public static Collection<IPriorityQueue<Integer>> data() {
       IPriorityQueue<Integer>[] implementations = new IPriorityQueue[]{
             new JavaLibPriorityQueue<Integer>(),
-            new ASPriorityQueue<Integer>()
+            new ASPriorityQueue<Integer>(),
+            new LockFreePriorityQueue<Integer>(),
             // TODO: add other implementations here
       };
 
