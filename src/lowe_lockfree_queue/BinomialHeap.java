@@ -15,6 +15,12 @@ public class BinomialHeap <E extends Comparable<E>> {
     Node<E> head = new Node<>(null); //sentinel head node
     private final AtomicInteger opCount = new AtomicInteger(0);
     private final AtomicInteger count = new AtomicInteger(0);
+    private static final ThreadLocal<Backoff> backoff = new ThreadLocal<Backoff>() {
+        @Override
+        public Backoff initialValue() {
+            return new Backoff(400, 300000, 1.2f);
+        }
+    };
 
     // This number determines how often a thread attempts to tidy the heap
     // structure. A smaller number results in more tidying, which results in fewer
@@ -398,6 +404,7 @@ public class BinomialHeap <E extends Comparable<E>> {
         if (e == null) {
             throw new NullArgumentException();
         }
+        backoff.get().reset();
         Node<E> myNode = new Node<>(e);
         Node<E> curr = head;
         NodeState<E> currState;
@@ -414,7 +421,7 @@ public class BinomialHeap <E extends Comparable<E>> {
                             maybeTidy();
                             return;
                         } else {
-                            //TODO: implement Backoff();
+                            backoff.get().backoff();
                         }
                     }
                 } else if (currState.degree == 0 && curr.key != null && curr.key.compareTo(e) <= 0) { //insert below curr
@@ -542,6 +549,7 @@ public class BinomialHeap <E extends Comparable<E>> {
     }
 
     public E deleteMin() {
+        backoff.get().reset();
         MinList<NodePair<E>> minList = new MinList<>(10);
         Node<E> curr = head;
         int currSeq = curr.getSeq();
@@ -549,7 +557,7 @@ public class BinomialHeap <E extends Comparable<E>> {
             Object[] nodeInfo = advance(curr, currSeq);
             if (nodeInfo == null) {
                 //restart
-                //TODO implement Backoff()
+                backoff.get().backoff();
                 curr = head;
                 currSeq = curr.getSeq();
                 minList.clear();
@@ -581,7 +589,7 @@ public class BinomialHeap <E extends Comparable<E>> {
                     NodePair<E> minPair = minList.removeFirst();
                     if (minPair == null) {
                         //restart
-                        //TODO implement Backoff()
+                        backoff.get().backoff();
                         curr = head;
                         currSeq = curr.getSeq();
                         minList.clear();
@@ -600,7 +608,7 @@ public class BinomialHeap <E extends Comparable<E>> {
                                 insertChildren(pred, delState.children, minList);
                             } else {
                                 //restart
-                                //TODO implement Backoff()
+                                backoff.get().backoff();
                                 curr = head;
                                 currSeq = curr.getSeq();
                                 minList.clear();
