@@ -1,4 +1,4 @@
-package lockfree;
+package lowe_lockfree_queue;
 
 public class NodePair <E extends Comparable<E>> implements Comparable<NodePair<E>> {
     public Node<E> node;

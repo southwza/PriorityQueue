@@ -1,4 +1,4 @@
-package lockfree;
+package lowe_lockfree_queue;
 
 public class Delete <E extends Comparable<E>> implements Label {
     final Node<E> pred;
