@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303fa409-4877-44fa-832c-a24354cb942e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lockfree/BinomialHeap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/ISLList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Label.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeNext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeParent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/NodePair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/NodeState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/lockfree/LockFreeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PriorityQueue.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PriorityQueue.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/BitReversedCounter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/Heap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/HeapNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/HeapNodeTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/MichaelSPriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queues/LockBasedPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queues/LockBasedPriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/queues/PriorityQueueTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/PriorityQueueTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,46 +71,7 @@
       <recent name="$PROJECT_DIR$/testCases" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BenchmarkRunner">
-    <configuration name="BenchmarkRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bench.BenchmarkRunner" />
-      <module name="PriorityQueue" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestUtils (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bench.TestUtils" />
-      <module name="PriorityQueue" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bench.bench.TestUtils" />
-      <module name="PriorityQueue" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bench.bench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PriorityQueueTests">
     <configuration name="PriorityQueueTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PriorityQueue" />
       <option name="PACKAGE_NAME" value="queues" />
@@ -125,7 +81,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestASPriorityQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PriorityQueueTests.testAddingAndRemoving" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PriorityQueue" />
       <extension name="coverage">
         <pattern>
@@ -134,26 +90,75 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="queues" />
-      <option name="MAIN_CLASS_NAME" value="queues.TestASPriorityQueue" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testAddingAndRemoving" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PriorityQueueTests.testAddingAndRemovingSimultaneously" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PriorityQueue" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="queues.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="queues" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testAddingAndRemovingSimultaneously" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PriorityQueueTests.testCorrectness" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PriorityQueue" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="queues.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="queues" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testCorrectness" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PriorityQueueTests.testCorrectnessUnorderedList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PriorityQueue" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="queues.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="queues" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testCorrectnessUnorderedList" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.BenchmarkRunner" />
-      <item itemvalue="Application.TestUtils" />
-      <item itemvalue="Application.TestUtils (1)" />
       <item itemvalue="JUnit.PriorityQueueTests" />
-      <item itemvalue="JUnit.TestASPriorityQueue" />
+      <item itemvalue="JUnit.PriorityQueueTests.testAddingAndRemoving" />
+      <item itemvalue="JUnit.PriorityQueueTests.testAddingAndRemovingSimultaneously" />
+      <item itemvalue="JUnit.PriorityQueueTests.testCorrectness" />
+      <item itemvalue="JUnit.PriorityQueueTests.testCorrectnessUnorderedList" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BenchmarkRunner" />
-        <item itemvalue="JUnit.TestASPriorityQueue" />
         <item itemvalue="JUnit.PriorityQueueTests" />
-        <item itemvalue="Application.TestUtils (1)" />
-        <item itemvalue="Application.TestUtils" />
+        <item itemvalue="JUnit.PriorityQueueTests.testCorrectnessUnorderedList" />
+        <item itemvalue="JUnit.PriorityQueueTests.testCorrectness" />
+        <item itemvalue="JUnit.PriorityQueueTests.testAddingAndRemovingSimultaneously" />
+        <item itemvalue="JUnit.PriorityQueueTests.testAddingAndRemoving" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +179,7 @@
       <workItem from="1605465764337" duration="56000" />
       <workItem from="1605465845607" duration="337000" />
       <workItem from="1605466212555" duration="1458000" />
+      <workItem from="1606275745999" duration="8038000" />
     </task>
     <servers />
   </component>
@@ -214,50 +220,78 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="542" y="330" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.23.1440.834@0.23.1440.834" timestamp="1605463051921" />
-    <state width="458" height="466" key="DebuggerActiveHint" timestamp="1605162118833">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state x="146" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606030608402">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="146" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.840@0.23.1440.840" timestamp="1606030608402" />
+    <state width="458" height="470" key="DebuggerActiveHint" timestamp="1606419794465">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="458" height="466" key="DebuggerActiveHint/0.23.1440.834@0.23.1440.834" timestamp="1605162118833" />
-    <state width="1396" height="340" key="GridCell.Tab.0.bottom" timestamp="1605468491377">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="458" height="470" key="DebuggerActiveHint/0.23.1440.840@0.23.1440.840" timestamp="1606419794465" />
+    <state width="518" height="471" key="DebuggerActiveHint/0.23.1440.841@0.23.1440.841" timestamp="1606194033606" />
+    <state x="99" y="123" width="1240" height="638" key="DiffContextDialog" timestamp="1606420742967">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="99" y="123" width="1240" height="634" key="DiffContextDialog/0.23.1440.836@0.23.1440.836" timestamp="1606007670735" />
+    <state x="99" y="123" width="1240" height="638" key="DiffContextDialog/0.23.1440.840@0.23.1440.840" timestamp="1606420742967" />
+    <state x="99" y="123" width="1240" height="639" key="DiffContextDialog/0.23.1440.841@0.23.1440.841" timestamp="1606187042008" />
+    <state width="1099" height="649" key="GridCell.Tab.0.bottom" timestamp="1606420675120">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
     <state width="1396" height="340" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605468491377" />
-    <state width="1396" height="333" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1605458574573" />
-    <state width="1396" height="340" key="GridCell.Tab.0.center" timestamp="1605468491376">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1605493597815" />
+    <state width="1099" height="649" key="GridCell.Tab.0.bottom/0.23.1440.840@0.23.1440.840" timestamp="1606420675120" />
+    <state width="1247" height="440" key="GridCell.Tab.0.bottom/0.23.1440.841@0.23.1440.841" timestamp="1606194294126" />
+    <state width="1099" height="649" key="GridCell.Tab.0.center" timestamp="1606420675120">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
     <state width="1396" height="340" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
-    <state width="1396" height="333" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="340" key="GridCell.Tab.0.left" timestamp="1605468491375">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1605493597813" />
+    <state width="1099" height="649" key="GridCell.Tab.0.center/0.23.1440.840@0.23.1440.840" timestamp="1606420675120" />
+    <state width="1247" height="440" key="GridCell.Tab.0.center/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1099" height="649" key="GridCell.Tab.0.left" timestamp="1606420675119">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
     <state width="1396" height="340" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1605468491375" />
-    <state width="1396" height="333" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="340" key="GridCell.Tab.0.right" timestamp="1605468491376">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1605493597812" />
+    <state width="1099" height="649" key="GridCell.Tab.0.left/0.23.1440.840@0.23.1440.840" timestamp="1606420675119" />
+    <state width="1247" height="440" key="GridCell.Tab.0.left/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1099" height="649" key="GridCell.Tab.0.right" timestamp="1606420675120">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
     <state width="1396" height="340" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
-    <state width="1396" height="333" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="426" key="GridCell.Tab.1.bottom" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1605493597814" />
+    <state width="1099" height="649" key="GridCell.Tab.0.right/0.23.1440.840@0.23.1440.840" timestamp="1606420675120" />
+    <state width="1247" height="440" key="GridCell.Tab.0.right/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1099" height="326" key="GridCell.Tab.1.bottom" timestamp="1606420188715">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
-    <state width="1396" height="426" key="GridCell.Tab.1.center" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1099" height="326" key="GridCell.Tab.1.bottom/0.23.1440.840@0.23.1440.840" timestamp="1606420188715" />
+    <state width="1247" height="172" key="GridCell.Tab.1.bottom/0.23.1440.841@0.23.1440.841" timestamp="1606194282604" />
+    <state width="1099" height="326" key="GridCell.Tab.1.center" timestamp="1606420188714">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.center/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
-    <state width="1396" height="426" key="GridCell.Tab.1.left" timestamp="1605464989372">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1099" height="326" key="GridCell.Tab.1.center/0.23.1440.840@0.23.1440.840" timestamp="1606420188714" />
+    <state width="1247" height="172" key="GridCell.Tab.1.center/0.23.1440.841@0.23.1440.841" timestamp="1606194282603" />
+    <state width="1099" height="326" key="GridCell.Tab.1.left" timestamp="1606420188714">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.left/0.23.1440.834@0.23.1440.834" timestamp="1605464989372" />
-    <state width="1396" height="426" key="GridCell.Tab.1.right" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1099" height="326" key="GridCell.Tab.1.left/0.23.1440.840@0.23.1440.840" timestamp="1606420188714" />
+    <state width="1247" height="172" key="GridCell.Tab.1.left/0.23.1440.841@0.23.1440.841" timestamp="1606194282603" />
+    <state width="1099" height="326" key="GridCell.Tab.1.right" timestamp="1606420188715">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.right/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
+    <state width="1099" height="326" key="GridCell.Tab.1.right/0.23.1440.840@0.23.1440.840" timestamp="1606420188715" />
+    <state width="1247" height="172" key="GridCell.Tab.1.right/0.23.1440.841@0.23.1440.841" timestamp="1606194282604" />
     <state x="308" y="183" key="IDE.errors.dialog" timestamp="1605465074504">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
@@ -272,6 +306,14 @@
     </state>
     <state x="221" y="78" key="SettingsEditor/0.23.1440.833@0.23.1440.833" timestamp="1603338195703" />
     <state x="221" y="78" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1605464950835" />
+    <state x="420" y="364" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606034159381">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="420" y="364" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.840@0.23.1440.840" timestamp="1606034159381" />
+    <state x="374" y="204" width="772" height="472" key="find.popup" timestamp="1606016793282">
+      <screen x="0" y="23" width="1440" height="837" />
+    </state>
+    <state x="374" y="204" width="772" height="472" key="find.popup/0.23.1440.837@0.23.1440.837" timestamp="1606016793282" />
     <state x="385" y="181" width="670" height="676" key="search.everywhere.popup" timestamp="1605465712525">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
@@ -291,14 +333,24 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/queues/ASPriorityQueue.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/test/queues/PriorityQueueTests.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/queues/ASPriorityQueue.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/test/queues/PriorityQueueTests.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/Heap.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/Heap.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

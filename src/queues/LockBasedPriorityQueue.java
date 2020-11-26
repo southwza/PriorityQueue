@@ -1,39 +1,43 @@
 package queues;
 
 import Interfaces.IPriorityQueue;
+import MichaelSLockBasedPriorityQueueHeap.MichaelSPriorityQueue;
 import org.apache.commons.math3.exception.NullArgumentException;
 
-public class LockBasedPriorityQueue<T> implements IPriorityQueue<T>
+public class LockBasedPriorityQueue<T extends Comparable<T>> implements IPriorityQueue<T>
 {
-   private int size = 0;
+   private MichaelSPriorityQueue<T> queue;
+
+   LockBasedPriorityQueue() {
+      queue = new MichaelSPriorityQueue<>();
+   }
 
    @Override
    public boolean enqueue(T e) {
       if (e == null) {
          throw new NullArgumentException();
       }
-      // TODO: implementation
-      return false;
+
+      return queue.enqueue(e);
    }
 
    @Override
    public T dequeue() {
-      if (size == 0) {
+      if (queue.size() == 0) {
          throw new IndexOutOfBoundsException();
       }
-      // TODO: implementation
-      return null;
+
+      return queue.dequeue();
    }
 
    @Override
    public int size() {
-      // TODO: implementation
-      return 0;
+      return queue.size();
    }
 
    @Override
    public void clear() {
-      // TODO: implementation
+      queue.clear();
    }
 
    @Override
