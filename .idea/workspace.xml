@@ -2,19 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="303fa409-4877-44fa-832c-a24354cb942e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lockfree/BinomialHeap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/ISLList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Label.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeNext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/MergeParent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/NodePair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lockfree/NodeState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/lockfree/LockFreeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PriorityQueue.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PriorityQueue.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/TestASPriorityQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/BenchMarkMixedCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingOrder_10000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingOrder_100000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingOrder_1000000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingThenDescendingOrder_1000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingThenDescendingOrder_10000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingThenDescendingOrder_100000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/AscendingThenDescendingOrder_1000000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/DescendingOrder_10000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/DescendingOrder_100000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/DescendingOrder_1000000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/RandomOrder_10000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/RandomOrder_100000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bench/benchCases/RandomOrder_1000000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/HeapNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/HeapNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/TestCasesGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/TestCasesGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bench/BenchMarkBestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchMarkBestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bench/BenchMarkRandomCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchMarkRandomCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bench/BenchMarkWorstCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchMarkWorstCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bench/BenchmarkRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/BenchmarkRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bench/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bench/TestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lowe_lockfree_queue/BinomialHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lowe_lockfree_queue/BinomialHeap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queues/LockBasedPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queues/LockBasedPriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queues/LockFreePriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queues/LockFreePriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/queues/PriorityQueueTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/queues/PriorityQueueTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +64,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testCases" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/bench/benchCases" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
@@ -60,19 +73,21 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/bench/benchCases" />
+      <recent name="$PROJECT_DIR$/src/bench" />
+      <recent name="$PROJECT_DIR$/testCases" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="bench" />
       <recent name="queues" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/testCases" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="bench.benchCases" />
       <recent name="bench" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/bench/benchCases" />
-      <recent name="$PROJECT_DIR$/src/bench" />
       <recent name="$PROJECT_DIR$/testCases" />
     </key>
   </component>
@@ -90,25 +105,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestUtils (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="TestUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bench.TestUtils" />
       <module name="PriorityQueue" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="bench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bench.bench.TestUtils" />
-      <module name="PriorityQueue" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bench.bench.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,7 +127,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestASPriorityQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PriorityQueueTests.testCorrectness" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PriorityQueue" />
       <extension name="coverage">
         <pattern>
@@ -134,26 +136,43 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="queues" />
-      <option name="MAIN_CLASS_NAME" value="queues.TestASPriorityQueue" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testCorrectness" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PriorityQueueTests.testCorrectnessUnorderedList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PriorityQueue" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="queues.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="queues" />
+      <option name="MAIN_CLASS_NAME" value="queues.PriorityQueueTests" />
+      <option name="METHOD_NAME" value="testCorrectnessUnorderedList" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.BenchmarkRunner" />
-      <item itemvalue="Application.TestUtils" />
-      <item itemvalue="Application.TestUtils (1)" />
       <item itemvalue="JUnit.PriorityQueueTests" />
-      <item itemvalue="JUnit.TestASPriorityQueue" />
+      <item itemvalue="JUnit.PriorityQueueTests.testCorrectness" />
+      <item itemvalue="JUnit.PriorityQueueTests.testCorrectnessUnorderedList" />
+      <item itemvalue="Application.TestUtils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.BenchmarkRunner" />
-        <item itemvalue="JUnit.TestASPriorityQueue" />
-        <item itemvalue="JUnit.PriorityQueueTests" />
-        <item itemvalue="Application.TestUtils (1)" />
         <item itemvalue="Application.TestUtils" />
+        <item itemvalue="JUnit.PriorityQueueTests" />
+        <item itemvalue="JUnit.PriorityQueueTests.testCorrectnessUnorderedList" />
+        <item itemvalue="JUnit.PriorityQueueTests.testCorrectness" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +193,7 @@
       <workItem from="1605465764337" duration="56000" />
       <workItem from="1605465845607" duration="337000" />
       <workItem from="1605466212555" duration="1458000" />
+      <workItem from="1606275745999" duration="10470000" />
     </task>
     <servers />
   </component>
@@ -206,58 +226,87 @@
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="274" y="371" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.834@0.23.1440.834" timestamp="1605463042853" />
-    <state x="542" y="305" width="471" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605466895916">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state x="542" y="307" width="471" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606478216062">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state x="542" y="305" width="471" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.834@0.23.1440.834" timestamp="1605466895916" />
+    <state x="542" y="307" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.840@0.23.1440.840" timestamp="1606478216062" />
     <state x="542" y="330" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1605463051921">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
     <state x="542" y="330" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.23.1440.834@0.23.1440.834" timestamp="1605463051921" />
-    <state width="458" height="466" key="DebuggerActiveHint" timestamp="1605162118833">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state x="146" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606472299821">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="146" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.840@0.23.1440.840" timestamp="1606472299821" />
+    <state width="458" height="470" key="DebuggerActiveHint" timestamp="1606473574687">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="458" height="466" key="DebuggerActiveHint/0.23.1440.834@0.23.1440.834" timestamp="1605162118833" />
-    <state width="1396" height="340" key="GridCell.Tab.0.bottom" timestamp="1605468491377">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="458" height="470" key="DebuggerActiveHint/0.23.1440.840@0.23.1440.840" timestamp="1606473574687" />
+    <state width="518" height="471" key="DebuggerActiveHint/0.23.1440.841@0.23.1440.841" timestamp="1606194033606" />
+    <state x="99" y="123" width="1240" height="638" key="DiffContextDialog" timestamp="1606478879212">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="99" y="123" width="1240" height="634" key="DiffContextDialog/0.23.1440.836@0.23.1440.836" timestamp="1606007670735" />
+    <state x="99" y="123" width="1240" height="638" key="DiffContextDialog/0.23.1440.840@0.23.1440.840" timestamp="1606478879212" />
+    <state x="99" y="123" width="1240" height="639" key="DiffContextDialog/0.23.1440.841@0.23.1440.841" timestamp="1606187042008" />
+    <state width="1292" height="16" key="GridCell.Tab.0.bottom" timestamp="1606478270754">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
     <state width="1396" height="340" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605468491377" />
-    <state width="1396" height="333" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1605458574573" />
-    <state width="1396" height="340" key="GridCell.Tab.0.center" timestamp="1605468491376">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1605493597815" />
+    <state width="1292" height="16" key="GridCell.Tab.0.bottom/0.23.1440.840@0.23.1440.840" timestamp="1606478270754" />
+    <state width="1247" height="440" key="GridCell.Tab.0.bottom/0.23.1440.841@0.23.1440.841" timestamp="1606194294126" />
+    <state width="1292" height="16" key="GridCell.Tab.0.center" timestamp="1606478270753">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
     <state width="1396" height="340" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
-    <state width="1396" height="333" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="340" key="GridCell.Tab.0.left" timestamp="1605468491375">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1605493597813" />
+    <state width="1292" height="16" key="GridCell.Tab.0.center/0.23.1440.840@0.23.1440.840" timestamp="1606478270753" />
+    <state width="1247" height="440" key="GridCell.Tab.0.center/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1292" height="16" key="GridCell.Tab.0.left" timestamp="1606478270753">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1603338394695" />
     <state width="1396" height="340" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1605468491375" />
-    <state width="1396" height="333" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="340" key="GridCell.Tab.0.right" timestamp="1605468491376">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1605493597812" />
+    <state width="1292" height="16" key="GridCell.Tab.0.left/0.23.1440.840@0.23.1440.840" timestamp="1606478270753" />
+    <state width="1247" height="440" key="GridCell.Tab.0.left/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1292" height="16" key="GridCell.Tab.0.right" timestamp="1606478270754">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="208" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1603338394696" />
     <state width="1396" height="340" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1605468491376" />
-    <state width="1396" height="333" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1605458574572" />
-    <state width="1396" height="426" key="GridCell.Tab.1.bottom" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1396" height="429" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1605493597814" />
+    <state width="1292" height="16" key="GridCell.Tab.0.right/0.23.1440.840@0.23.1440.840" timestamp="1606478270754" />
+    <state width="1247" height="440" key="GridCell.Tab.0.right/0.23.1440.841@0.23.1440.841" timestamp="1606194294125" />
+    <state width="1292" height="44" key="GridCell.Tab.1.bottom" timestamp="1606474868095">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.bottom/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
-    <state width="1396" height="426" key="GridCell.Tab.1.center" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1292" height="44" key="GridCell.Tab.1.bottom/0.23.1440.840@0.23.1440.840" timestamp="1606474868095" />
+    <state width="1247" height="172" key="GridCell.Tab.1.bottom/0.23.1440.841@0.23.1440.841" timestamp="1606194282604" />
+    <state width="1292" height="44" key="GridCell.Tab.1.center" timestamp="1606474868094">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.center/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
-    <state width="1396" height="426" key="GridCell.Tab.1.left" timestamp="1605464989372">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1292" height="44" key="GridCell.Tab.1.center/0.23.1440.840@0.23.1440.840" timestamp="1606474868094" />
+    <state width="1247" height="172" key="GridCell.Tab.1.center/0.23.1440.841@0.23.1440.841" timestamp="1606194282603" />
+    <state width="1292" height="44" key="GridCell.Tab.1.left" timestamp="1606474868094">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.left/0.23.1440.834@0.23.1440.834" timestamp="1605464989372" />
-    <state width="1396" height="426" key="GridCell.Tab.1.right" timestamp="1605464989373">
-      <screen x="0" y="23" width="1440" height="834" />
+    <state width="1292" height="44" key="GridCell.Tab.1.left/0.23.1440.840@0.23.1440.840" timestamp="1606474868094" />
+    <state width="1247" height="172" key="GridCell.Tab.1.left/0.23.1440.841@0.23.1440.841" timestamp="1606194282603" />
+    <state width="1292" height="44" key="GridCell.Tab.1.right" timestamp="1606474868095">
+      <screen x="0" y="23" width="1440" height="840" />
     </state>
     <state width="1396" height="426" key="GridCell.Tab.1.right/0.23.1440.834@0.23.1440.834" timestamp="1605464989373" />
+    <state width="1292" height="44" key="GridCell.Tab.1.right/0.23.1440.840@0.23.1440.840" timestamp="1606474868095" />
+    <state width="1247" height="172" key="GridCell.Tab.1.right/0.23.1440.841@0.23.1440.841" timestamp="1606194282604" />
     <state x="308" y="183" key="IDE.errors.dialog" timestamp="1605465074504">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
@@ -272,6 +321,15 @@
     </state>
     <state x="221" y="78" key="SettingsEditor/0.23.1440.833@0.23.1440.833" timestamp="1603338195703" />
     <state x="221" y="78" key="SettingsEditor/0.23.1440.834@0.23.1440.834" timestamp="1605464950835" />
+    <state x="420" y="364" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606034159381">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="420" y="364" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.840@0.23.1440.840" timestamp="1606034159381" />
+    <state x="374" y="205" width="821" height="474" key="find.popup" timestamp="1606472313789">
+      <screen x="0" y="23" width="1440" height="840" />
+    </state>
+    <state x="374" y="204" width="772" height="472" key="find.popup/0.23.1440.837@0.23.1440.837" timestamp="1606016793282" />
+    <state x="374" y="205" width="821" height="474" key="find.popup/0.23.1440.840@0.23.1440.840" timestamp="1606472313789" />
     <state x="385" y="181" width="670" height="676" key="search.everywhere.popup" timestamp="1605465712525">
       <screen x="0" y="23" width="1440" height="834" />
     </state>
@@ -291,14 +349,34 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/queues/ASPriorityQueue.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/test/queues/PriorityQueueTests.java</url>
+          <line>129</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/queues/ASPriorityQueue.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/test/queues/PriorityQueueTests.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/Heap.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MichaelSLockBasedPriorityQueueHeap/Heap.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bench/TestUtils.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bench/BenchMarkWorstCase.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,12 +9,13 @@ public class TestCasesGenerator
    {
       AscendingOrder,
       DescendingOrder,
-      RandomOrder
+      RandomOrder,
+      AscendingThenDescendingOrder
    }
 
    private static String kUsageHelpMessage =
                "Usage: java Utils.TestCasesGenerator DataSize Mode \n" +
-               "Valid Modes: AscendingOrder:0 DescendingOrder:1 Random:2 \n" +
+               "Valid Modes: AscendingOrder:0 DescendingOrder:1 Random:2 AscendingAndDescending: 3\n" +
                "Example: java Utils.TestCasesGenerator 100 0 \n";
 
    // Usage: java Utils.TestCasesGenerator size TestCaseMode OutputFile.txt
@@ -43,6 +44,9 @@ public class TestCasesGenerator
                break;
             case 2:
                mode = TestCaseMode.RandomOrder;
+               break;
+            case 3:
+               mode = TestCaseMode.AscendingThenDescendingOrder;
                break;
             default:
                System.out.println("Invalid Mode!");
@@ -84,6 +88,9 @@ public class TestCasesGenerator
             break;
          case RandomOrder:
             outputStr = getRandomCaseOutputStr(size);
+            break;
+         case AscendingThenDescendingOrder:
+            outputStr = getAscendingAndDescendingOutputStr(size);
             break;
          default:
             System.out.println("Invalid Mode!");
@@ -134,6 +141,25 @@ public class TestCasesGenerator
 
    private static String getRandomCaseOutputStr(int size) {
       final int[] array = getRandomCaseOutput(size);
+      return arrayToOutputString(array);
+   }
+
+   private static int[] getAscendingAndDescendingOutput(int size) {
+      int[] array = new int[size];
+      final int mid = size / 2;
+      for (int i = 0; i < mid; i++) {
+         array[i] = i;
+      }
+
+      for (int i = mid, j = 0; i < size; i++, j++) {
+         array[i] = size - j;
+      }
+
+      return array;
+   }
+
+   private static String getAscendingAndDescendingOutputStr(int size) {
+      final int[] array = getAscendingAndDescendingOutput(size);
       return arrayToOutputString(array);
    }
 

@@ -8,10 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +17,6 @@ import java.util.concurrent.Future;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import queues.JavaLibPriorityQueue;
 import queues.ASPriorityQueue;
 
 @RunWith(Parameterized.class)
@@ -32,8 +28,9 @@ public class PriorityQueueTests
    public static Collection<IPriorityQueue<Integer>> data() {
       IPriorityQueue<Integer>[] implementations = new IPriorityQueue[]{
             new JavaLibPriorityQueue<Integer>(),
-            new ASPriorityQueue<Integer>(),
             new LockFreePriorityQueue<Integer>(),
+            new LockBasedPriorityQueue<Integer>(),
+            // new ASPriorityQueue<Integer>(),
             // TODO: add other implementations here
       };
 
@@ -63,13 +60,33 @@ public class PriorityQueueTests
 
    @Test
    public void testCorrectness() {
-      final Integer testDataSize = 100;
+      final Integer testDataSize = 1000;
       for (Integer i = 0; i < testDataSize; i++) {
          mQueueUnderTest.enqueue(i);
       }
 
       for (Integer i = 0; i < testDataSize; i++) {
          Assert.assertEquals(i, mQueueUnderTest.dequeue());
+      }
+   }
+
+   @Test
+   public void testCorrectnessUnorderedList() {
+      final Integer testDataSize = 1000;
+      final int low = 10;
+      final int high = testDataSize;
+      final ArrayList<Integer> values = new ArrayList<>();
+      Random random = new Random();
+      for (Integer i = 0; i < testDataSize; i++) {
+         final int result = random.nextInt(high-low) + low;
+         mQueueUnderTest.enqueue(result);
+         values.add(result);
+      }
+
+      Collections.sort(values);
+
+      for (Integer i = 0; i < testDataSize; i++) {
+         Assert.assertEquals(values.get(i), mQueueUnderTest.dequeue());
       }
    }
 
