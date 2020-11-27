@@ -8,7 +8,7 @@ public class LockBasedPriorityQueue<T extends Comparable<T>> implements IPriorit
 {
    private MichaelSPriorityQueue<T> queue;
 
-   LockBasedPriorityQueue() {
+   public LockBasedPriorityQueue() {
       queue = new MichaelSPriorityQueue<>();
    }
 

@@ -43,6 +43,9 @@ public class HeapNode<T>
    public void clear() {
       // Note: no need to clear the lock.
       // lock = new ReentrantLock();
+      if (lock.isLocked()) {
+         lock.unlock();
+      }
       tag = HeapNodeTag.EMPTY;
       priority = null;
    }
