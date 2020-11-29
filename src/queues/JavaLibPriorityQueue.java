@@ -37,6 +37,6 @@ public class JavaLibPriorityQueue<T> implements IPriorityQueue<T>
 
    @Override
    public String getImplementationName() {
-      return "queues.JavaLibPriorityQueue";
+      return "JavaLibPriorityQueue";
    }
 }

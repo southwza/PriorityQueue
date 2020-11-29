@@ -11,13 +11,7 @@ public class HeapNode<T>
    HeapNode() {
       lock = new ReentrantLock();
       tag = HeapNodeTag.EMPTY;
-      priority = null;
-   }
-
-   HeapNode(T priority, int tag) {
-      lock = new ReentrantLock();
-      this.tag = tag;
-      this.priority = priority;
+      priority = (T) Integer.valueOf(0);
    }
 
    HeapNode(HeapNode<T> node) {
@@ -43,11 +37,8 @@ public class HeapNode<T>
    public void clear() {
       // Note: no need to clear the lock.
       // lock = new ReentrantLock();
-      if (lock.isLocked()) {
-         lock.unlock();
-      }
       tag = HeapNodeTag.EMPTY;
-      priority = null;
+      priority = (T) Integer.valueOf(0);
    }
 
    public void swap(HeapNode<T> other) {

@@ -4,11 +4,11 @@ import Interfaces.IPriorityQueue;
 import MichaelSLockBasedPriorityQueueHeap.MichaelSPriorityQueue;
 import org.apache.commons.math3.exception.NullArgumentException;
 
-public class LockBasedPriorityQueue<T extends Comparable<T>> implements IPriorityQueue<T>
+public class FineLockBasedPriorityQueue<T extends Comparable<T>> implements IPriorityQueue<T>
 {
    private MichaelSPriorityQueue<T> queue;
 
-   public LockBasedPriorityQueue() {
+   public FineLockBasedPriorityQueue() {
       queue = new MichaelSPriorityQueue<>();
    }
 
@@ -42,6 +42,6 @@ public class LockBasedPriorityQueue<T extends Comparable<T>> implements IPriorit
 
    @Override
    public String getImplementationName() {
-      return "queues.LockBasedPriorityQueue";
+      return "FineLockBasedPriorityQueue";
    }
 }

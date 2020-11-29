@@ -17,7 +17,6 @@ import java.util.concurrent.Future;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import queues.ASPriorityQueue;
 
 @RunWith(Parameterized.class)
 public class PriorityQueueTests
@@ -29,8 +28,8 @@ public class PriorityQueueTests
       IPriorityQueue<Integer>[] implementations = new IPriorityQueue[]{
             new JavaLibPriorityQueue<Integer>(),
             new LockFreePriorityQueue<Integer>(),
-            new LockBasedPriorityQueue<Integer>(),
-            // new ASPriorityQueue<Integer>(),
+            new FineLockBasedPriorityQueue<Integer>(),
+            new CoarseLockBasedPriorityQueue<Integer>(),
             // TODO: add other implementations here
       };
 

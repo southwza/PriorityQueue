@@ -11,12 +11,26 @@ public class BitReversedCounter {
       highBit = -1;
    }
 
-   public int xor(int i, int bit) {
+   public void clear() {
+      counter = 0;
+      reversed = 0;
+      highBit = -1;
+   }
+
+   public int getCounter() {
+      return counter;
+   }
+
+   public int getReversed() {
+      return reversed;
+   }
+
+   private int xor(int i, int bit) {
       int mask = 1 << (bit - 1);
       return i ^ mask;
    }
 
-   public boolean andBit(int i, int bit) {
+   private boolean andBit(int i, int bit) {
       int mask = 1 << (bit - 1);
       return (i & mask) != 0;
    }
@@ -63,5 +77,12 @@ public class BitReversedCounter {
       }
 
       return reversed;
+   }
+
+   public static void main(String[] args) {
+      final BitReversedCounter bitReversedCounter = new BitReversedCounter();
+      for (int i = 0; i < 50; i++) {
+         System.out.println("Current Location: " + bitReversedCounter.bit_reversed_increment());
+      }
    }
 }

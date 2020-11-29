@@ -14,7 +14,7 @@ public class MichaelSPriorityQueue<T extends Comparable<T>>
          throw new NullArgumentException();
       }
 
-      heap.concurrentInsert(e,(int)Thread.currentThread().getId());
+      heap.concurrentInsert(e);
       return true;
    }
 

@@ -11,7 +11,7 @@ public class Heap<T extends Comparable<T>>
    // TODO: This can impact performance since there will
    // be wasted cycles growing and initializing the array.
    // Increasing number slows down constructor.
-   private final int initialSize = 1024;
+   private final int initialSize = 1024 * 1000;
    private int rootIndex = 1;
 
    Heap() {
@@ -77,7 +77,7 @@ public class Heap<T extends Comparable<T>>
    }
 
    public int size() {
-      return counter.counter;
+      return counter.getCounter();
    }
 
    public void clear() {
@@ -89,8 +89,8 @@ public class Heap<T extends Comparable<T>>
       }
    }
 
-   public void concurrentInsert(T priority, int pid) {
-      int currPid = pid;
+   public void concurrentInsert(T priority) {
+      final int currPid = (int) Thread.currentThread().getId();
       // Lock heap
       heapLock.lock();
       int child = counter.bit_reversed_increment();
@@ -101,11 +101,10 @@ public class Heap<T extends Comparable<T>>
 
       lock(child);
 
-      setPriority(child, priority);
-      setTag(child, pid);
-
       heapLock.unlock();
 
+      setPriority(child, priority);
+      setTag(child, currPid);
       unlock(child);
 
       while (child > rootIndex) {
@@ -123,10 +122,10 @@ public class Heap<T extends Comparable<T>>
                child = parent;
             } else {
                setTag(child, HeapNodeTag.AVAILABLE);
-               unlock(parent);
-               unlock(child);
-               return;
+               child = 0;
             }
+         } else if (getTag(parent) == HeapNodeTag.EMPTY) {
+            child = 0;
          } else if (getTag(child) != currPid) {
             child = parent;
          }
@@ -136,23 +135,23 @@ public class Heap<T extends Comparable<T>>
       }
 
       if (child == rootIndex) {
-         lock(rootIndex);
-         if (getTag(rootIndex) == currPid) {
-            setTag(rootIndex, HeapNodeTag.AVAILABLE);
+         lock(child);
+         if (getTag(child) == currPid) {
+            setTag(child, HeapNodeTag.AVAILABLE);
          }
-         unlock(rootIndex);
+         unlock(child);
       }
    }
 
    public T concurrentDelete() {
       heapLock.lock();
 
-      if (counter.counter == 0) {
+      if (counter.getCounter() == 0) {
          heapLock.unlock();
          return null;
       }
 
-      int bottom = counter.reversed;
+      int bottom = counter.getReversed();
       counter.bit_reversed_decrement();
 
       lock(rootIndex);
@@ -225,7 +224,7 @@ public class Heap<T extends Comparable<T>>
    public String toString() {
       String result = "";
       int depth = 1;
-      int size = this.counter.counter;
+      int size = this.counter.getCounter();
       while (size > 1) {
          size = size >>> 1;
          depth++;
