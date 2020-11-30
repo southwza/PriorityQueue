@@ -1,7 +1,6 @@
 package queues;
 
 import Interfaces.IPriorityQueue;
-import queues.ASPriorityQueue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +9,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
-import queues.ASPriorityQueue;
 
-public class TestASPriorityQueue {
-
+public class TestCoarseLockBasedPriorityQueue
+{
     @Test
     public void testAddElements() {
         List<Integer> list = Arrays.asList( 12,10,15,14,11,2,6,2,18 );
@@ -24,7 +22,7 @@ public class TestASPriorityQueue {
     }
 
     private void enqueueAndDequeue(List<Integer> list) {
-        IPriorityQueue<Integer> queue = new ASPriorityQueue<Integer>();
+        IPriorityQueue<Integer> queue = new CoarseLockBasedPriorityQueue<Integer>();
         List<Integer> results = new ArrayList<Integer>();
         for (Integer i : list) {
             queue.enqueue(i);

@@ -2,6 +2,8 @@ package queues;
 import java.util.AbstractQueue;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.concurrent.locks.ReentrantLock;
+
 import Interfaces.IPriorityQueue;
 import org.apache.commons.math3.exception.NullArgumentException;
 
@@ -28,13 +30,14 @@ import org.apache.commons.math3.exception.NullArgumentException;
  * @param <E>
  */
 @SuppressWarnings("unchecked")
-public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> implements IPriorityQueue<E> {
+public class CoarseLockBasedPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> implements IPriorityQueue<E> {
 
     private int size = 0;
     private Object[] heapArray;
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
+    private ReentrantLock heapLock = new ReentrantLock();
 
-    public ASPriorityQueue () {
+    public CoarseLockBasedPriorityQueue() {
         heapArray = new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
@@ -54,11 +57,15 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
             throw new NullArgumentException();
         }
 
+        heapLock.lock();
+
         if (heapArray.length - 1 == size) {
             growArray();
         }
         heapArray[++size] = e;
         bubbleUp(size);
+
+        heapLock.unlock();
 
         return true;
     }
@@ -69,11 +76,16 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
         if (size == 0) {
             throw new IndexOutOfBoundsException();
         }
+
+        heapLock.lock();
+
         result = (E) heapArray[1];
         heapArray[1] = heapArray[size];
         heapArray[size--] = null;
 
         bubbleDown();
+
+        heapLock.unlock();
         // TODO Auto-generated method stub
         return result;
     }
@@ -102,7 +114,7 @@ public class ASPriorityQueue<E extends Comparable<E>> extends AbstractQueue<E> i
 
     @Override
     public String getImplementationName() {
-        return "ASPriorityQueue";
+        return "CoarseLockBasedPriorityQueue";
     }
 
     //Bubble up the element at the provided index

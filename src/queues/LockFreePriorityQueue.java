@@ -19,10 +19,11 @@ public class LockFreePriorityQueue<T extends Comparable<T>> implements IPriority
 
    @Override
    public T dequeue() {
-      T min = queue.deleteMin();
-      if (min == null) {
-         System.out.println("got null!");
+      if (queue.size() == 0) {
+         throw new IndexOutOfBoundsException();
       }
+
+      T min = queue.deleteMin();
       return min;
    }
 
@@ -38,6 +39,6 @@ public class LockFreePriorityQueue<T extends Comparable<T>> implements IPriority
 
    @Override
    public String getImplementationName() {
-      return "queues.LockFreePriorityQueue";
+      return "LockFreePriorityQueue";
    }
 }
