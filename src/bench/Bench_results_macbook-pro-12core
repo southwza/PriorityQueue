@@ -696,6 +696,72 @@ b.BenchMarkWorstCase.benchLockFreePriorityQueue_8Threads_EnqThenDeq             
 b.BenchMarkWorstCase.benchLockFreePriorityQueue_8Threads_EnqThenDeq                   src/bench/benchCases/DescendingOrder_100000.txt  avgt       20   226167.822 ± 20440.152  us/op
 
 
+# Run complete. Total time: 00:17:43
+
+Benchmark                                                                                                             (fileUnderTest)  Mode  Samples      Score        Error  Units
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_16Threads_DeqOnly                    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   3197.840 ±   1697.904  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_16Threads_EnqAndDeqSimultaneously    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   4274.117 ±   1063.135  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_16Threads_EnqOnly                    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20    688.833 ±     34.298  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_16Threads_EnqThenDeq                 src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   3334.525 ±    323.253  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_1Thread_DeqOnly                      src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   1025.585 ±     78.968  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_1Thread_EnqAndDeqSimultaneously      src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   2141.518 ±   1154.033  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_1Thread_EnqOnly                      src/bench/benchCases/AscendingOrder_1000.txt  avgt       20    454.230 ±     18.805  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_1Thread_EnqThenDeq                   src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   1667.472 ±   1043.097  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_32Threads_DeqOnly                    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   3228.493 ±   1358.667  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_32Threads_EnqAndDeqSimultaneously    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   4519.166 ±   1180.916  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_32Threads_EnqOnly                    src/bench/benchCases/AscendingOrder_1000.txt  avgt       20  29876.024 ± 113126.246  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_32Threads_EnqThenDeq                 src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   4827.047 ±   3916.629  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_4Threads_DeqOnly                     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   2269.439 ±    217.934  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_4Threads_EnqAndDeqSimultaneously     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   3996.703 ±   1394.286  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_4Threads_EnqOnly                     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20    586.466 ±     53.269  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_4Threads_EnqThenDeq                  src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   5238.584 ±   5141.652  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_8Threads_DeqOnly                     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   2152.361 ±    181.427  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_8Threads_EnqAndDeqSimultaneously     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   4548.135 ±   2017.615  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_8Threads_EnqOnly                     src/bench/benchCases/AscendingOrder_1000.txt  avgt       20    650.769 ±     32.555  us/op
+b.BenchMarkBestCase.benchFineLockBasedPriorityQueue_8Threads_EnqThenDeq                  src/bench/benchCases/AscendingOrder_1000.txt  avgt       20   4159.174 ±   2800.021  us/op
+
+
+# Run complete. Total time: 00:17:42
+
+Benchmark                                                                                                            (fileUnderTest)  Mode  Samples     Score       Error  Units
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_16Threads_DeqOnly                    src/bench/benchCases/RandomOrder_1000.txt  avgt       20  2399.886 ±   111.734  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_16Threads_EnqAndDeqSimultaneously    src/bench/benchCases/RandomOrder_1000.txt  avgt       20  4170.400 ±  1184.817  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_16Threads_EnqOnly                    src/bench/benchCases/RandomOrder_1000.txt  avgt       20  1279.419 ±  1247.286  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_16Threads_EnqThenDeq                 src/bench/benchCases/RandomOrder_1000.txt  avgt       20  8878.125 ± 15519.571  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_1Thread_DeqOnly                      src/bench/benchCases/RandomOrder_1000.txt  avgt       20  1055.244 ±   139.061  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_1Thread_EnqAndDeqSimultaneously      src/bench/benchCases/RandomOrder_1000.txt  avgt       20  1736.996 ±    97.926  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_1Thread_EnqOnly                      src/bench/benchCases/RandomOrder_1000.txt  avgt       20   538.579 ±    24.087  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_1Thread_EnqThenDeq                   src/bench/benchCases/RandomOrder_1000.txt  avgt       20  1592.768 ±    88.585  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_32Threads_DeqOnly                    src/bench/benchCases/RandomOrder_1000.txt  avgt       20  2862.527 ±   167.799  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_32Threads_EnqAndDeqSimultaneously    src/bench/benchCases/RandomOrder_1000.txt  avgt       20  4478.235 ±  1629.871  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_32Threads_EnqOnly                    src/bench/benchCases/RandomOrder_1000.txt  avgt       20   808.253 ±    37.055  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_32Threads_EnqThenDeq                 src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3884.522 ±  1009.436  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_4Threads_DeqOnly                     src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3772.504 ±  3026.615  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_4Threads_EnqAndDeqSimultaneously     src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3982.979 ±  1295.336  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_4Threads_EnqOnly                     src/bench/benchCases/RandomOrder_1000.txt  avgt       20   718.096 ±    28.743  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_4Threads_EnqThenDeq                  src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3135.276 ±   433.566  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_8Threads_DeqOnly                     src/bench/benchCases/RandomOrder_1000.txt  avgt       20  2486.820 ±   458.487  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_8Threads_EnqAndDeqSimultaneously     src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3893.862 ±   329.089  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_8Threads_EnqOnly                     src/bench/benchCases/RandomOrder_1000.txt  avgt       20   770.352 ±    28.803  us/op
+b.BenchMarkRandomCase.benchFineLockBasedPriorityQueue_8Threads_EnqThenDeq                  src/bench/benchCases/RandomOrder_1000.txt  avgt       20  3259.553 ±   483.139  us/op
+
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_1Thread_EnqThenDeq     src/bench/benchCases/DescendingOrder_1000.txt  avgt       20   2382.445 ± 1318.158  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_4Threads_EnqThenDeq    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  15574.011 ± 4313.353  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_8Threads_EnqThenDeq    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  1053432.266 ± 1810701.584  us/op
+
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_1Thread_EnqOnly     src/bench/benchCases/DescendingOrder_1000.txt  avgt       20      983.352 ±      33.514  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_4Threads_EnqOnly    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20    11627.974 ±    3087.920  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_8Threads_EnqOnly    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  2018570.435 ± 4089565.665  us/op
+
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_1Thread_DeqOnly                     src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  1366.722 ± 1587.582  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_1Thread_EnqAndDeqSimultaneously     src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  1920.545 ±  934.126  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_4Threads_DeqOnly                    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  2823.291 ± 1521.914  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_4Threads_EnqAndDeqSimultaneously    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  3878.595 ± 1660.055  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_8Threads_DeqOnly                    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  2407.587 ± 1381.333  us/op
+b.BenchMarkWorstCase.benchFineLockBasedPriorityQueue_8Threads_EnqAndDeqSimultaneously    src/bench/benchCases/DescendingOrder_1000.txt  avgt       20  4240.761 ± 1477.664  us/op
+
+
+
 
 
 
