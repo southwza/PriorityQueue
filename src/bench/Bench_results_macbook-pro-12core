@@ -225,7 +225,7 @@ b.BenchMarkMixedCase.benchJavaLibPriorityQueue_4Threads_EnqThenDeq              
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_4Threads_EnqThenDeq                            src/bench/benchCases/AscendingThenDescendingOrder_10000.txt  avgt       20    39244.844 ±   35543.900  us/op
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_4Threads_EnqThenDeq                           src/bench/benchCases/AscendingThenDescendingOrder_100000.txt  avgt       20   411697.361 ±  294628.634  us/op
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_4Threads_EnqThenDeq                          src/bench/benchCases/AscendingThenDescendingOrder_1000000.txt  avgt       20  2757871.093 ± 1680549.022  us/op
-b.BenchMarkMixedCase.benchJavaLibPriorityQueue_8Threads_DeqOnly                                src/bench/benchCases/AscendingThenDescendingOrder_1000.txt  avgt       20     9006.628 ±   23604.781  us/op
+b.BenchMarkMixedCase.benchJavaLibPriorityQueue_8Threads_DeqOnly    src/bench/benchCases/AscendingThenDescendingOrder_1000.txt  avgt       20  765.306 ± 81.572  us/op
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_8Threads_DeqOnly                               src/bench/benchCases/AscendingThenDescendingOrder_10000.txt  avgt       20    16852.338 ±    7827.719  us/op
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_8Threads_DeqOnly                              src/bench/benchCases/AscendingThenDescendingOrder_100000.txt  avgt       20   291836.827 ±  281186.323  us/op
 b.BenchMarkMixedCase.benchJavaLibPriorityQueue_8Threads_DeqOnly                             src/bench/benchCases/AscendingThenDescendingOrder_1000000.txt  avgt       20  2251246.414 ± 1187033.594  us/op
